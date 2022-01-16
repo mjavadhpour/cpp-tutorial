@@ -5,6 +5,19 @@
 #include <map>
 #include <cassert>
 
+class X
+{
+    int a, b, i, j;
+public:
+    const int& r;
+    X(int i)
+      : r(a)
+      , b{i}
+      , i(i)
+      , j(this->i)
+    {}
+};
+
 [[deprecated("Here I'm trying to use attributes!")]]
 void my_try__Function_definition [[maybe_unused]] (int i) try {
     std::map<std::string, std::string> my_map [[maybe_unused]] {
