@@ -16,7 +16,10 @@ public:
       , i(i)
       , j(this->i)
     {}
+    ~X();
 };
+
+X::~X() try { std::cout << "Disctructor" << std::endl; } catch(...) {}
 
 [[deprecated("Here I'm trying to use attributes!")]]
 void my_try__Function_definition [[maybe_unused]] (int i) try {
@@ -52,6 +55,10 @@ int main(int, char**) {
         }
         std::cout << std::endl;
     }
+
+    auto my_class = new X(5);
+
+    delete my_class;
     
     return 0;
 }
