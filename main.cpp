@@ -3,19 +3,27 @@
 #include <ranges>
 #include <iomanip>
 #include <map>
+#include <cassert>
 
-[[noreturn]]
 [[deprecated("Here I'm trying to use attributes!")]]
 void my_try__Function_definition [[maybe_unused]] (int i) try {
-    std::map<std::string, std::string> my_map [[using CC: opt(1), debug]] {
+    std::map<std::string, std::string> my_map [[maybe_unused]] {
         {"Hello", "World"},
         {"Hello", "Earth"}
     };
+
+    if (true) [[expect_true]] [[likely]] {
+        std::cout << "Attribute inside if statement" << std::endl;
+    }
+
+    throw my_map;
 } catch(std::exception& e) {
-    [[using CC: opt(1), debug]] {
-        std::cout << "an exception: " << e.what() << std::endl;
-    } [[using CC: opt(1), debug]];
+    assert(i == 4);
+    std::cout << "An Exception: " << e.what() << std::endl;
 }
+
+[[noreturn]]
+auto my_try_2__Function_definition();
 
 int main(int, char**) {
     std::vector<int> v = {2, 4, 6, 8, 1, 3, 5, 7, 9, 11};
