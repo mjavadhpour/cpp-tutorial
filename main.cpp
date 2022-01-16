@@ -2,6 +2,16 @@
 #include <vector>
 #include <ranges>
 #include <iomanip>
+#include <map>
+
+void my_try__Function_definition(int i) try {
+    std::map<std::string, std::string> my_map {
+        {"Hello", "World"},
+        {"Hello", "Earth"}
+    };
+} catch(std::exception& e) {
+    std::cout << "an exception: " << e.what() << std::endl;
+};
 
 int main(int, char**) {
     std::vector<int> v = {2, 4, 6, 8, 1, 3, 5, 7, 9, 11};
