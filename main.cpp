@@ -4,7 +4,9 @@
 #include <iomanip>
 #include <map>
 
-void my_try__Function_definition(int i) try {
+[[noreturn]]
+[[deprecated("Here I'm trying to use attributes!")]]
+void my_try__Function_definition[[maybe_unused]](int i) try {
     std::map<std::string, std::string> my_map {
         {"Hello", "World"},
         {"Hello", "Earth"}
