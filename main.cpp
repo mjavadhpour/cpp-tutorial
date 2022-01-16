@@ -6,14 +6,16 @@
 
 [[noreturn]]
 [[deprecated("Here I'm trying to use attributes!")]]
-void my_try__Function_definition[[maybe_unused]](int i) try {
-    std::map<std::string, std::string> my_map {
+void my_try__Function_definition [[maybe_unused]] (int i) try {
+    std::map<std::string, std::string> my_map [[using CC: opt(1), debug]] {
         {"Hello", "World"},
         {"Hello", "Earth"}
     };
 } catch(std::exception& e) {
-    std::cout << "an exception: " << e.what() << std::endl;
-};
+    [[using CC: opt(1), debug]] {
+        std::cout << "an exception: " << e.what() << std::endl;
+    } [[using CC: opt(1), debug]];
+}
 
 int main(int, char**) {
     std::vector<int> v = {2, 4, 6, 8, 1, 3, 5, 7, 9, 11};
