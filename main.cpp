@@ -5,6 +5,7 @@
 #include <map>
 #include <cassert>
 #include <type_traits>
+#include <initializer_list>
 #define LEN 10
 
 class X
@@ -62,6 +63,15 @@ struct constN
     constN() { std::cout << n << '\n'; }
 };
 
+class Foo {
+public:
+    std::vector<int> vec;
+    Foo(std::initializer_list<int> list) {
+        for (std::initializer_list<int>::iterator it = list.begin();
+            it != list.end(); ++it) vec.push_back(*it);
+    }
+};
+
 int main(int, char**) {
     std::vector<int> v = {2, 4, 6, 8, 1, 3, 5, 7, 9, 11};
     auto even = [](int i) { return 0 == i % 2; };
@@ -96,6 +106,33 @@ int main(int, char**) {
     const int my_compile_time_number = fibonacci(20);
     std::cout << "Fibonacci 20 (Compile Time) = " << my_compile_time_number << '\n'; 
     std::cout << "Fibonacci 20 (Run Time) = " << fibonacci(20) << '\n'; 
+
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+
+    auto itr = std::find(vec.begin(), vec.end(), 2);
+    if (itr != vec.end()) {
+        *itr = 3;
+    }
+
+    if (auto itr = std::find(vec.begin(), vec.end(), 3);
+        itr != vec.end()) {
+        *itr = 4;
+    }
+
+    for (std::vector<int>::iterator element = vec.begin(); element != vec.end(); ++element)
+        std::cout << *element << std::endl;
+
+
+    int arr[3] = {1, 2, 3};
+    Foo foo {1, 2, 12, 19, 16, 113};
+
+    std::cout << "arr[0]: " << arr[0] << std::endl;
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it) {
+        std::cout << *it << std::endl;
+    }
+     for (std::vector<int>::iterator it = foo.vec.begin(); it != foo.vec.end(); ++it) {
+        std::cout << *it << std::endl;
+    }
 
     return 0;
 }
