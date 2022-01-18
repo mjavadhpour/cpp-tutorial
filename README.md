@@ -25,4 +25,6 @@ GNU gdb (Debian 10.1-1.7) 10.1.90.20210103-git
 Copyright (C) 2021 Free Software Foundation, Inc.
 ```
 
+> You need to configure CMake to use GCC for compilation.
+
 The purpose of this project is to use modern C++ features and work with them.
