@@ -38,6 +38,12 @@ void my_try__Function_definition [[maybe_unused]] (int i) try {
     std::cout << "An Exception: " << e.what() << std::endl;
 }
 
+extern "C" {
+    int add(int x, int y) {
+        return x+y;
+    }
+}
+
 [[noreturn]]
 auto my_try_2__Function_definition();
 
@@ -61,6 +67,10 @@ int main(int, char**) {
     auto my_class = new X(5);
 
     delete my_class;
+
+    [out = std::ref(std::cout << "Result from C code: " << add(1, 2))](){
+        out.get() << ".\n";
+    }();
     
     return 0;
 }
