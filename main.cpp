@@ -91,10 +91,11 @@ int main(int, char**) {
     }();
 
     std::cout << "Fibonacci 40 (Compile Time) = " ;
-    constN<fibonacci(40)> out1; 
+    constexpr int my_compile_time_number_1 = fibonacci(40);
+    constN<my_compile_time_number_1> out1; 
     
-    const int my_compile_time_number = fibonacci(40);
-    std::cout << "Fibonacci 40 (Compile Time) = " << my_compile_time_number << '\n'; 
+    const int my_compile_time_number_2 = fibonacci(40);
+    std::cout << "Fibonacci 40 (Compile Time) = " << my_compile_time_number_2 << '\n'; 
     std::cout << "Fibonacci 40 (Run Time) = " << fibonacci(40) << '\n'; 
 
     return 0;
