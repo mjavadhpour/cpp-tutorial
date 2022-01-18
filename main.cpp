@@ -5,6 +5,7 @@
 #include <map>
 #include <cassert>
 #include <type_traits>
+#define LEN 10
 
 class X
 {
@@ -48,8 +49,18 @@ extern "C" {
 void foo(char *);
 void foo(int);
 
+constexpr int fibonacci(const int n) {
+    return n == 1 || n == 2 ? 1 : fibonacci(n-1) + fibonacci(n-2);
+}
+
 [[noreturn]]
 auto my_try_2__Function_definition();
+
+template<int n>
+struct constN
+{
+    constN() { std::cout << n << '\n'; }
+};
 
 int main(int, char**) {
     std::vector<int> v = {2, 4, 6, 8, 1, 3, 5, 7, 9, 11};
@@ -78,7 +89,14 @@ int main(int, char**) {
     [out = std::ref(std::cout << "Result from C code: " << add(1, 2))](){
         out.get() << ".\n";
     }();
+
+    std::cout << "Fibonacci 40 (Compile Time) = " ;
+    constN<fibonacci(40)> out1; 
     
+    const int my_compile_time_number = fibonacci(40);
+    std::cout << "Fibonacci 40 (Compile Time) = " << my_compile_time_number << '\n'; 
+    std::cout << "Fibonacci 40 (Run Time) = " << fibonacci(40) << '\n'; 
+
     return 0;
 }
 
