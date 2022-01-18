@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <map>
 #include <cassert>
+#include <type_traits>
 
 class X
 {
@@ -44,6 +45,9 @@ extern "C" {
     }
 }
 
+void foo(char *);
+void foo(int);
+
 [[noreturn]]
 auto my_try_2__Function_definition();
 
@@ -68,9 +72,19 @@ int main(int, char**) {
 
     delete my_class;
 
+    foo(0);
+    foo(nullptr);
+
     [out = std::ref(std::cout << "Result from C code: " << add(1, 2))](){
         out.get() << ".\n";
     }();
     
     return 0;
+}
+
+void foo(char *) {
+    std::cout << "foo(char*) is called" << std::endl;
+}
+void foo(int i) {
+    std::cout << "foo(int) is called" << std::endl;
 }
