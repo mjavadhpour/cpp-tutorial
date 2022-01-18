@@ -3,11 +3,11 @@
 This repo contained configured devcontainer docker image with the following tools:
 ```sh
 > gcc --version
-gcc (Debian 10.2.1-6) 10.2.1 20210110
+gcc (Ubuntu 10.3.0-1ubuntu1) 10.3.0
 Copyright (C) 2020 Free Software Foundation, Inc.
 
 > clang --version
-Debian clang version 11.0.1-2
+Ubuntu clang version 12.0.0-3ubuntu1~21.04.2
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
@@ -21,7 +21,7 @@ Built for x86_64-pc-linux-gnu
 Copyright (C) 1988-2020 Free Software Foundation, Inc.
 
 > gdb --version
-GNU gdb (Debian 10.1-1.7) 10.1.90.20210103-git
+GNU gdb (Ubuntu 10.1-2ubuntu2) 10.1.90.20210411-git
 Copyright (C) 2021 Free Software Foundation, Inc.
 ```
 
