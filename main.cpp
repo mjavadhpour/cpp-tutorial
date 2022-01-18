@@ -28,7 +28,7 @@ void my_try__Function_definition [[maybe_unused]] (int i) try {
         {"Hello", "Earth"}
     };
 
-    if (true) [[expect_true]] [[likely]] {
+    if (true) [[likely]] {
         std::cout << "Attribute inside if statement" << std::endl;
     }
 
@@ -45,6 +45,8 @@ int main(int, char**) {
     std::vector<int> v = {2, 4, 6, 8, 1, 3, 5, 7, 9, 11};
     auto even = [](int i) { return 0 == i % 2; };
     auto odd = [](int i) { return 0 != i % 2; };
+    const char* my_str = "Hello World!";
+    int my_number = 5;
 
     std::cout.flags(std::ios::left);
     for (auto &&i : v | std::views::filter(even))
